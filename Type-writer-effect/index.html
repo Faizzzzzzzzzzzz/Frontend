@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type Writer Effect</title>
+    <style>
+      .dynamic-text {
+        color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <p>I am <span class="dynamic-text"></span></p>
+
+    <script>
+      let dynamicContent = document.querySelector(".dynamic-text");
+      const phrases = ["Software Engineer...", "Web Developer..."];
+      let letterIndex = 0;
+      let phraseIndex = 0;
+      const typingSpeed = 150;
+      const erasingSpeed = 75;
+
+      function printLetters(phrase) {
+        // Clear Letters
+        if (letterIndex == phrase.length) {
+          clearLetters();
+        }
+        // Print Letters
+        else if (letterIndex < phrase.length) {
+          dynamicContent.textContent += phrase.charAt(letterIndex);
+          letterIndex += 1;
+          setTimeout(function () {
+            printLetters(phrase);
+          }, typingSpeed);
+        }
+      }
+
+      function clearLetters() {
+        if (letterIndex == -1) {
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          letterIndex = 0;
+          printLetters(phrases[phraseIndex]);
+        } else if (letterIndex > -1) {
+          let updatedPhrase = "";
+          for (let index = 0; index < letterIndex; index++) {
+            updatedPhrase += phrases[phraseIndex].charAt(index);
+          }
+          dynamicContent.textContent = updatedPhrase;
+          letterIndex -= 1;
+          setTimeout(clearLetters, erasingSpeed);
+        }
+      }
+
+      printLetters(phrases[0]);
+    </script>
+  </body>
+</html>
