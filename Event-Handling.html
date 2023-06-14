@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <label for="username">Username</label>
+    <input type="text" id="username" /> -->
+
+    <form name="contact">
+      <!-- <input type="email" name="email" id="email" required /> -->
+      <input type="text" name="number" id="number" required />
+    </form>
+    <script>
+      document.getElementById("number").addEventListener("input", function (e) {
+        let num = parseInt(e.target.value);
+        if (num.toString == NaN.toString) {
+          alert("You have enterd invalid number");
+        }
+      });
+
+      // document.getElementById("email").addEventListener("input", function (e) {
+      //   // console.log(e.target.value);
+      //   const emailElement = e.target;
+      //   if (emailElement.validity.typeMismatch) {
+      //     emailElement.setCustomValidity("Please Enter valid Email");
+      //     emailElement.reportValidity();
+      //   } else {
+      //     emailElement.setCustomValidity("Welcome");
+      //   }
+      // });
+
+      // function handleMouseOver(event) {
+      //   console.log(event);
+      // }
+
+      // document
+      //   .querySelector(".start")
+      //   .addEventListener("click", function handleClick() {
+      //     document.addEventListener("mouseover", handleMouseOver);
+      //   });
+
+      // document
+      //   .querySelector(".stop")
+      //   .addEventListener("click", function handleClick() {
+      //     document.removeEventListener("mouseover", handleMouseOver);
+      //   });
+
+      // document
+      //   .getElementById("username")
+      //   .addEventListener("keyup", function (e) {
+      //     console.log(e.key);
+      //   });
+
+      document
+        .getElementById("username")
+        .addEventListener("keypress", function (e) {
+          console.log(e.key);
+          if (e.key == 2) {
+            e.preventDefault();
+          }
+        });
+      document
+        .getElementById("username")
+        .addEventListener("keydown", function (e) {
+          console.log(e.key);
+          if (e.key == 2) {
+            e.preventDefault();
+          }
+        });
+      document
+        .getElementById("username")
+        .addEventListener("keyup", function (e) {
+          console.log(e.key);
+          if (e.key == 2) {
+            e.preventDefault();
+          }
+        });
+    </script>
+  </body>
+</html>

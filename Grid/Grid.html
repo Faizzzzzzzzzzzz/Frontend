@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        --col-track-size: auto;
+        display: grid;
+        grid-template-columns: var(--col-track-size) var(--col-track-size) var(
+            --col-track-size
+          );
+        grid-template-rows: 200px;
+        gap: 16px;
+        width: 400px;
+        border: 2px solid;
+        padding: 8px;
+      }
+      .container > div {
+        background-color: lightcoral;
+      }
+      .option-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="option-container">
+      <section>
+        <label for="auto">auto</label>
+        <input type="radio" name="track-width" id="auto" value="auto" checked />
+      </section>
+      <section>
+        <label for="min-content">min-content</label>
+        <input
+          type="radio"
+          name="track-width"
+          id="min-content"
+          value="min-content"
+          checked
+        />
+      </section>
+      <section>
+        <label for="max-content">max-content</label>
+        <input
+          type="radio"
+          name="track-width"
+          id="max-content"
+          value="max-content"
+          checked
+        />
+      </section>
+      <section>
+        <label for="fit-content">min-content</label>
+        <input
+          type="radio"
+          name="track-width"
+          id="fit-content"
+          value="fit-content"
+          checked
+        />
+      </section>
+    </section>
+    <div class="container">
+      <div class="item">first item</div>
+      <div class="item">second item</div>
+      <div class="item">
+        first item with more text. it has reality long text. longestword
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("input").forEach((radioInput) =>
+          radioInput.addEventListener("change", function (event) {
+            document
+              .querySelector(".container")
+              .style.setProperty("--col-track-size", event.target.value);
+          })
+        );
+      });
+    </script>
+  </body>
+</html>

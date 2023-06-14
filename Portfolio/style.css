@@ -1,27 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  scroll-behavior: smooth;
+  --background-color: hsl(0, 0%, 100%);
+  --secondary-color: hsl(271, 82%, 59%);
+  --text-color: hsl(240deg, 95%, 8%);
+  --intro-color: hsl(0, 0%, 85%);
+  --shadow-color: hsl(225 10% 83%);
+  --shadow-color-dark: hsl(225 10% 63%);
+
+  --font-size-small: 0.5rem;
+  --font-size-regular: 1rem;
+  --font-size-large: 1.5rem;
+  --font-size-xl: 2rem;
+
+  --spacing-regular: 16px;
+  --spacing-small: calc(var(--spacing-regular) / 2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: var(--font-size-large);
+}
+.header {
+  padding: 16px;
+  position: sticky;
+  background: var(--background-color);
+  top: 0;
+  z-index: 1;
+}
+nav a {
+  text-decoration: none;
+  color: inherit;
+  font-size: var(--font-size-regular);
+}
+
+header nav > a {
+  margin-right: 16px;
+}
+header nav > a:last-child {
+  margin-right: revert;
+}
+nav > a:hover,
+nav a:visited:hover {
+  color: var(--secondary-color);
+}
+
+footer {
+  padding: 16px;
+  text-align: center;
+  border-top: 4px solid;
+}
+section {
+  scroll-margin-top: 80px;
 }
 .container {
   margin: 16px;
 }
-.container > div h2 {
+.container > section > h2 {
   text-align: center;
-  background: black;
-  color: #fff;
+  color: var(--text-color);
 }
-.intro {
-  background: black;
-  color: #fff;
+#intro {
+  background: var(--intro-color);
+  color: var(--text-color);
   padding: 16px;
   margin: -16px;
   text-align: center;
 }
-.intro img {
-  border-radius: 16px;
+#portfolio-img {
   height: 400px;
   width: 400px;
+  filter: drop-shadow(4px -6px 10px black);
 }
+
 .social-links img {
   height: 30px;
   width: 30px;
@@ -47,5 +106,136 @@ p {
 }
 
 .dynamic-text {
-  color: blueviolet;
+  color: var(--secondary-color);
+}
+form#contact {
+  max-width: 400px;
+  margin: auto;
+  padding: 16px;
+  border: 1px solid;
+  border-radius: 16px;
+}
+#contact label {
+  display: block;
+  font-weight: 600;
+  font-size: var(--font-size-regular);
+}
+#contact input,
+#contact textarea,
+#contact button {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 8px;
+}
+#contact-me {
+  margin-top: 16px;
+}
+#technologies .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-regular);
+  justify-content: center;
+  justify-items: center;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  padding: var(--spacing-regular);
+  box-shadow: 3px 3px 6px 5px var(--shadow-color);
+  width: 100%;
+  z-index: 0;
+  border-radius: var(--spacing-regular);
+  transition: transform 0.4s ease-in, box-shadow 0.4s ease-in-out;
+}
+.card:hover {
+  box-shadow: 3px 3px 6px 9px var(--shadow-color-dark);
+  transform: translateY(calc(-1 * var(--spacing-small)));
+}
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+.card header h1 {
+  margin: 0;
+}
+
+.mobile-nav,
+section.menu {
+  display: none;
+}
+.mobile-nav button {
+  margin-left: auto;
+}
+
+@media (width < 500px) {
+  .default-nav {
+    display: none;
+  }
+  .mobile-nav {
+    display: revert;
+  }
+  #menu-btn {
+    display: block;
+    border-radius: 8px;
+    margin-left: auto;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border-color: var(--text-color);
+  }
+
+  section.menu {
+    display: revert;
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    transition: height 0.8s ease-in-out;
+    background: var(--background-color);
+  }
+
+  section.menu ul {
+    list-style: none;
+  }
+  section.menu nav {
+    margin-top: 48px;
+    font-size: 1.5rem;
+  }
+  section.menu ul > li {
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+  }
+  section.menu nav {
+    margin-top: 48px;
+  }
+  section.menu nav a {
+    font-size: var(--font-size-large);
+  }
+
+  section #close-btn {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    background: transparent;
+    border: none;
+    border-radius: 2px;
+    font-size: var(--font-size-xl);
+    color: var(--text-color);
+  }
+}
+@media (width<=450px) {
+  #portfolio-img {
+    width: 100%;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    --background-color: hsl(240deg, 95%, 8%);
+    --text-color: hsl(240deg, 80%, 100%);
+    --intro-color: hsl(0, 0%, 18%);
+  }
 }
